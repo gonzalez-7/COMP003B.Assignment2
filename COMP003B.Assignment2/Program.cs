@@ -1,3 +1,10 @@
+/*
+Name: Antonio Gonzalez
+Course: COMP-003B: ASP.NET Core
+Faculty: Jonathan Cruz
+Purpose: This application demonstrates MVC concepts, including middleware, controllers, views, and layout design.
+*/
+
 namespace COMP003B.Assignment2
 {
     public class Program
@@ -19,16 +26,26 @@ namespace COMP003B.Assignment2
                 app.UseHsts();
             }
 
+            // Enable HTTPS redirection and static file handling
             app.UseHttpsRedirection();
-            app.UseRouting();
+            app.UseStaticFiles();
 
+            // Enable built-in Welcome Page at /welcome
+            app.UseWelcomePage("/welcome");
+
+            // Register custom middleware
+            app.UseMiddleware<RequestTrackerMiddleware>();
+
+            app.UseRouting();
             app.UseAuthorization();
 
+
             app.MapStaticAssets();
+
+            // Default MVC routing
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
-                .WithStaticAssets();
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }
