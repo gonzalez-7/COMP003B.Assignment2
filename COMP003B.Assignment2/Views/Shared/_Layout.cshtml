@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/COMP003B.Assignment2.styles.css" asp-append-version="true" />
+    @RenderSection("Title", required: false) <!-- Ensures no error if the section is missing -->
 </head>
 <body>
     <header>
